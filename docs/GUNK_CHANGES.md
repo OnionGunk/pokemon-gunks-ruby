@@ -102,3 +102,22 @@ the results table below.
 | pc_boxes | MOVE POKéMON: BOX1 -> BOX16 -> BOX15 -> BOX16 -> BOX1 |
 | eggs | egg cycles 10 -> 8 at the 256th step |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
+
+**Save suite results**:
+
+| Test | vanilla (= retail) | Gunk's Ruby (16 boxes) |
+|---|---|---|
+| save_cycles: 3 saves, power cycle, CONTINUE; RAM after loading = cart; position kept | pass | pass |
+| crash_after_save: emulator killed after a save | pass | pass |
+| torn_save: flash captured every 3 frames through a save and booted | pass: 79 images, previous save until the write completes | pass: 84 images, previous save ("corrupt, previous loaded") until +279f, the new save at +282f |
+| backup_recovery: newest slot damaged | pass | pass |
+| rtc_dead: RTC power failure, save and continue | pass | pass |
+| full_boxes: every PC slot filled, save, reload | pass (420) | pass (480) |
+
+**Map sweep** (`play.py map_sweep`): CONTINUE onto 18 maps (towns, routes, caves, the Abandoned Ship, the Sealed
+Chamber) with Mudkip out, steps in all directions: no freeze. The follower stays in its ball on 4 of them in this
+setup: Littleroot (the moving truck, a slot-10 object, is still there because the edited save skips the intro),
+Route 131, Meteor Falls 1F and the Abandoned Ship deck (spawned on or next to water/a warp).
+
+Not yet exercised: Mom's gift scene (Endless Repel, Exp. All, DexNav with the Running Shoes), the EXP bar speed
+on screen, a full story playthrough.
