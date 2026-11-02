@@ -32,7 +32,7 @@ exercised in the emulator, ⏳ planned.
 | # | Change | Verdict | Ruby plan | Status |
 |---|---|---|---|---|
 | 6 | DexNav key item: area species, search, chaining, search levels, legal encounters | adapt | **DEXNAV** key item (item 54, unused in vanilla), registerable. Its list shows the area's grass Pokémon (name if seen, `NEW` if not caught, ????? if unseen). A pick hides it in tall grass 2-4 tiles away; the patch rustles (the tall-grass animation) every 40 frames; stepping in starts the battle. **R** searches again. Search level +1 per DexNav battle (saved per species); the chain counts DexNav battles won or caught in a row and resets on running. IV rolls `1 + level/2 + 2×chain` (max 20), shiny rolls `1 + level/10 + chain/5` (max 10); each roll is a whole `CreateMonWithNature` wild Pokémon, so the kept one is legal. Grass only (as in Gunk's HeartGold). | ✅ |
-| 7 | DexNav gift | adapt | Mom gives it with the Running Shoes (with the Endless Repel and Exp. All). | 🟡 |
+| 7 | DexNav gift | adapt | Mom gives it with the Running Shoes (with the Endless Repel and Exp. All). | ✅ |
 
 ## Followers
 
@@ -101,6 +101,7 @@ the results table below.
 | move_tutor | Center PC -> MOVE TUTOR -> FORGET removes Water Gun, no Heart Scale |
 | pc_boxes | MOVE POKéMON: BOX1 -> BOX16 -> BOX15 -> BOX16 -> BOX1 |
 | eggs | egg cycles 10 -> 8 at the 256th step |
+| mom_gift | Littleroot with VAR_LITTLEROOT_STATE 3: Mom's scene gives the Running Shoes, Endless Repel, Exp. All and DexNav; state 4 as in vanilla |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
 
 **Save suite results**:
@@ -119,5 +120,4 @@ Chamber) with Mudkip out, steps in all directions: no freeze. The follower stays
 setup: Littleroot (the moving truck, a slot-10 object, is still there because the edited save skips the intro),
 Route 131, Meteor Falls 1F and the Abandoned Ship deck (spawned on or next to water/a warp).
 
-Not yet exercised: Mom's gift scene (Endless Repel, Exp. All, DexNav with the Running Shoes), the EXP bar speed
-on screen, a full story playthrough.
+Not yet exercised: the EXP bar speed on screen, a full story playthrough.
