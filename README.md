@@ -11,6 +11,9 @@ It keeps the game's difficulty and story as they are and takes the grind and fri
   caught), unseen ones as ?????. Pick one and it hides in a rustling patch of tall grass nearby; press **R** to
   search for it again. Search levels and chains raise the odds of good IVs and shinies, and every Pokémon is a
   legal wild roll.
+- **Pokémon follow you.** The first Pokémon in your party walks behind you, HeartGold style (all 386, shinies
+  included). Talk to it to hear its cry.
+- **16 PC boxes** (14 in the original game): a living dex with room to spare.
 - **Faster play:** instant text, a faster EXP bar, auto-run (hold B to walk), eggs hatch twice as fast.
 - **Items:** reusable TMs, two registered items (Select and L), Start sorts the bag, a prompt to use another
   Repel when one runs out, and an Endless Repel toggle.
@@ -23,7 +26,7 @@ It keeps the game's difficulty and story as they are and takes the grind and fri
 Mom gives you the Endless Repel, Exp. All and DexNav along with the Running Shoes.
 
 Save safety comes first: every build passes an emulator test suite that covers save cycles, power cycles, a
-power cut at every point during a save, damaged-save recovery and a dead clock battery.
+power cut at every point during a save, all 480 PC slots full, damaged-save recovery and a dead clock battery.
 
 The full list, with what was ported, adapted or skipped and why, is in [`docs/GUNK_CHANGES.md`](docs/GUNK_CHANGES.md).
 
@@ -42,6 +45,7 @@ sha1: f28b6ffc97847e94a6c21a63cacf633ee5c8df1e
 
 Use an emulator or cart with 128 KiB flash saves and the real-time clock (any that runs retail Ruby).
 Saves carry over between releases unless the release notes say otherwise. Back up your save before updating.
+Saves from the original Ruby don't load: the extra PC boxes moved the save layout, so start a new game.
 
 ## Build it
 
@@ -53,8 +57,9 @@ the toolchain notes.
 
 - [pret](https://github.com/pret/pokeruby) for the Ruby/Sapphire decompilation this hack is built on, and
   [agbcc](https://github.com/pret/agbcc).
-- [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion) (RHH) and its contributors: their
-  DexNav (by ghoulslash) and quality-of-life options were the reference for several of these changes.
+- [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion) (RHH) and its contributors: the
+  following-Pokémon sprites (`graphics/gunk_followers/`) and the follow logic come from its overworld followers, and
+  its DexNav (by ghoulslash) and quality-of-life options were the reference for several other changes.
 - The DexNav idea comes from Pokémon Omega Ruby and Alpha Sapphire and fan hacks such as Pokémon Unbound.
 - Pokémon Gunk's Platinum, HeartGold and Black: the sister hacks this change list comes from.
 
