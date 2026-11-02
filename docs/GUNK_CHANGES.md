@@ -38,7 +38,7 @@ exercised in the emulator, ⏳ planned.
 
 | # | Change | Verdict | Ruby plan | Status |
 |---|---|---|---|---|
-| 8 | Pokémon follow the player | port | Reference: pokeemerald-expansion's overworld followers. Needs follower sprites for 386 species plus the follow logic in pokeruby's object events. | ⏳ |
+| 8 | Pokémon follow the player | port | The party's first Pokémon (not an egg or fainted) walks one tile behind, HeartGold style. Sprites for all 386 species (normal and shiny) come from pokeemerald-expansion (`tools/gunk/make_followers.py` imports them); the follow logic is adapted from its `MovementType_FollowPlayer` as `MovementType_GunkFollow`. One graphics id (218) whose graphics info lives in RAM; palette in sprite slot 10. It stays in its ball while surfing, diving or biking, and on maps that show another slot-10 object (the rival, Kecleon, the S.S. Tidal...). It never blocks anyone (trainers see past it), isn't saved with the map's objects, and talking to it plays its cry. | ✅ |
 
 ## Quality of life
 
