@@ -61,6 +61,7 @@ exercised in the emulator, ⏳ planned.
 | 23 | Faster egg hatching | port | Two egg cycles per 256 steps. | ✅ |
 | 24 | Trade evolutions without trading | port | Kadabra 36, Machoke / Graveler / Haunter 37 by level (trading still works); King's Rock, Metal Coat, Dragon Scale, Up-Grade, DeepSeaTooth and DeepSeaScale are usable like evolution stones. An Everstone blocks the level-up ones (Ruby's level-up check already honours it). | ✅ |
 | 25 | Honey trees, Poké Radar info | skip | Not in Ruby. | — |
+| 25b | Quick Run and Quick Ball in battle (Platinum b156ee5ca) | adapt | Gunk's Sapphire's implementation (8bc3314b6, shared so both games run the same code): **R** on the action menu runs (not in link battles). In wild battles where a ball can be thrown (not trainer, double, link, Safari, Wally's tutorial or the first battle), a bottom-left widget shows the ball, its count (≤ 99) and an L hint; tap **L** to throw it from the action menu, hold L + Left/Right to cycle the kinds in the bag; it starts on the ball thrown last (`VAR_GUNK_LAST_BALL` 0x40F3, a ball thrown from the bag counts too). | ✅ |
 
 ## Test infrastructure (not in the shipped game)
 
@@ -104,7 +105,13 @@ the results table below.
 | mom_gift | Littleroot with VAR_LITTLEROOT_STATE 3: Mom's scene gives the Running Shoes, Endless Repel, Exp. All and DexNav; state 4 as in vanilla |
 | exp_bar | Mudkip Lv5 wins a wild battle: the EXP bar animation takes 0.80 frames per pixel (vanilla 1.42) |
 | rtc_dies | battery dies after ~24 years on a working clock: the clock carries on from the last berry update, then 30 h of play move it and the berry update 30 h |
+| dexnav_rules | no input: the search ends at 600 frames with "got away", chain 5 -> 0; the shake timer wraps every 30 frames; a wild battle with the chained species keeps chain 5, another species ends it |
+| quick_run | R at the action menu of a wild battle runs (outcome RAN) |
+| quick_ball | L at the action menu throws the widget's ball (a Great Ball: one fewer in the bag) |
+| qb_widget | widget shown in a wild battle, hidden in a trainer battle (Route 102 youngster) |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
+
+**PKHeX.Core legality** (`legaldump.py`, PKHeX.Core 26.10.18 in `C:\Projects\pkhex-legality-ru`): 49 Pokémon dumped from RAM on Route 101 — 12 wild, 6 caught in a Poké Ball, 22 DexNav (chain 0 / search level 0, chain 10 / level 50, chain 20 / level 255), 4 DexNav and 5 wild with the RTC reporting a dead battery. **49 valid, 0 invalid**: wild Method 1/2/4 as in retail, every DexNav one Method 1, levels from the species' slots, met Route 101, OT and ball correct. A dead RTC changes nothing. No shiny came up in this batch, so the shiny path is not covered here.
 
 **Save suite results**:
 
