@@ -111,9 +111,9 @@ the results table below.
 | qb_widget | widget shown in a wild battle, hidden in a trainer battle (Route 102 youngster) |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
 
-**PKHeX.Core legality** (`legaldump.py`, PKHeX.Core 26.10.18 in `C:\Projects\pkhex-legality-ru`): 49 Pokémon dumped from RAM on Route 101 — 12 wild, 6 caught in a Poké Ball, 22 DexNav (chain 0 / search level 0, chain 10 / level 50, chain 20 / level 255), 4 DexNav and 5 wild with the RTC reporting a dead battery. **49 valid, 0 invalid**: wild Method 1/2/4 as in retail, every DexNav one Method 1, levels from the species' slots, met Route 101, OT and ball correct. A dead RTC changes nothing. No shiny came up in this batch, so the shiny path is not covered here.
+**PKHeX.Core legality** (`legaldump.py`, PKHeX.Core 26.10.18 in `C:\Projects\pkhex-legality-ru`): 49 Pokémon dumped from RAM on Route 101 — 12 wild, 6 caught in a Poké Ball, 22 DexNav (chain 0 / search level 0, chain 10 / level 50, chain 20 / level 255), 4 DexNav and 5 wild with the RTC reporting a dead battery. **49 valid, 0 invalid**: wild Method 1/2/4 as in retail, every DexNav one Method 1, levels from the species' slots, met Route 101, OT and ball correct. A dead RTC changes nothing. No shiny came up in that batch, so a second one was seeded (`legaldump.py --shiny`): each encounter replayed from the same state and RNG seed with a trainer ID the game itself can generate (`InitPlayerTrainerId`: SID, then TID, from consecutive LCRNG draws) that makes its PID shiny. **25 shinies, 25 valid**: 6 wild, 4 caught, 15 DexNav (chain 0 / level 0, chain 10 / level 50, chain 20 / level 255, and chain 10 / level 50 with a dead RTC).
 
-**Save suite results**:
+**Save suite results** (all six rerun on 5dbcd99aa: pass; torn_save 84 distinct images):
 
 | Test | vanilla (= retail) | Gunk's Ruby (16 boxes) |
 |---|---|---|
