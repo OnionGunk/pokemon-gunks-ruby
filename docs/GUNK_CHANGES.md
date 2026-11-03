@@ -61,7 +61,6 @@ exercised in the emulator, ⏳ planned.
 | 23 | Faster egg hatching | port | Two egg cycles per 256 steps. | ✅ |
 | 24 | Trade evolutions without trading | port | Kadabra 36, Machoke / Graveler / Haunter 37 by level (trading still works); King's Rock, Metal Coat, Dragon Scale, Up-Grade, DeepSeaTooth and DeepSeaScale are usable like evolution stones. An Everstone blocks the level-up ones (Ruby's level-up check already honours it). | ✅ |
 | 25 | Honey trees, Poké Radar info | skip | Not in Ruby. | — |
-| 25b | Quick Run and Quick Ball in wild battles (Platinum b156ee5ca) | adapt | At the action menu of a plain wild battle (not trainer, double, link, Safari, Battle Tower, Birch's first battle or Wally's tutorial), **R** chooses RUN (every normal check and message applies) and **L** throws a ball through the same path as the bag's (the ball leaves the bag, the engine gets its id). The ball is the one last thrown (by L or from the bag, `VAR_GUNK_LAST_BALL` 0x40F3), else a Poké Ball, else the first ball in the bag. With no room in the party or boxes, L opens the bag, which says why. Ruby's battle screen has no room for Platinum's ball widget, so there's no on-screen ball picker (hold L + Left/Right): throw the ball you want once from the bag and L keeps throwing it. | ✅ |
 
 ## Test infrastructure (not in the shipped game)
 
@@ -104,8 +103,6 @@ the results table below.
 | eggs | egg cycles 10 -> 8 at the 256th step |
 | mom_gift | Littleroot with VAR_LITTLEROOT_STATE 3: Mom's scene gives the Running Shoes, Endless Repel, Exp. All and DexNav; state 4 as in vanilla |
 | exp_bar | Mudkip Lv5 wins a wild battle: the EXP bar animation takes 0.80 frames per pixel (vanilla 1.42) |
-| quick_run | R at the action menu of a wild battle: outcome RAN, back in the field |
-| quick_ball | L at the action menu: one Great Ball (thrown last before) leaves the bag, no bag screen |
 | rtc_dies | battery dies after ~24 years on a working clock: the clock carries on from the last berry update, then 30 h of play move it and the berry update 30 h |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
 
