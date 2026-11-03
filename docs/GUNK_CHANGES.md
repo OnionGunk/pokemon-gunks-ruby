@@ -45,7 +45,7 @@ exercised in the emulator, ⏳ planned.
 | # | Change | Verdict | Ruby plan | Status |
 |---|---|---|---|---|
 | 9 | INSTANT text speed; new games on FAST | port | `optionsTextSpeed` is a 3-bit field, so value 3 fits. The Options row keeps three places: SLOW/MID show SLOW MID FAST, FAST/INSTANT show MID FAST INSTANT. INSTANT prints up to the next button wait, pause or sound in one frame; link battles keep their fixed speed. | ✅ |
-| 10 | EXP bar fills twice as fast | port | `MoveBattleBar` step ×2. | 🟡 |
+| 10 | EXP bar fills twice as fast | port | Two pixels a frame: `MoveBattleBar`'s step ×2, and in `sub_8045F58`'s fixed-point path (used while a level spans fewer than 64 EXP, i.e. the early levels) the EXP bar's per-frame step ×2. Measured (`exp_bar`): 0.80 frames per pixel, vanilla 1.42. | ✅ |
 | 11 | HP bars 1 px/frame | skip | Ruby's HP bars already move at a fixed pixel rate. | — |
 | 12 | Run by default with the Running Shoes, hold B to walk | port | `PlayerNotOnBikeMoving` inverts the B check. | ✅ |
 | 13 | Repel prompt | port | `S_RepelWoreOff` asks "Use another X?" when one of the kind last used (`VAR_GUNK_LAST_REPEL` 0x40F0, unused in vanilla) is in the bag. Specials `GunkCheckLastRepel` / `GunkUseLastRepel`. | ✅ |
@@ -102,6 +102,7 @@ the results table below.
 | pc_boxes | MOVE POKéMON: BOX1 -> BOX16 -> BOX15 -> BOX16 -> BOX1 |
 | eggs | egg cycles 10 -> 8 at the 256th step |
 | mom_gift | Littleroot with VAR_LITTLEROOT_STATE 3: Mom's scene gives the Running Shoes, Endless Repel, Exp. All and DexNav; state 4 as in vanilla |
+| exp_bar | Mudkip Lv5 wins a wild battle: the EXP bar animation takes 0.80 frames per pixel (vanilla 1.42) |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
 
 **Save suite results**:
@@ -120,4 +121,4 @@ Chamber) with Mudkip out, steps in all directions: no freeze. The follower stays
 setup: Littleroot (the moving truck, a slot-10 object, is still there because the edited save skips the intro),
 Route 131, Meteor Falls 1F and the Abandoned Ship deck (spawned on or next to water/a warp).
 
-Not yet exercised: the EXP bar speed on screen, a full story playthrough.
+Not yet exercised: a full story playthrough.
