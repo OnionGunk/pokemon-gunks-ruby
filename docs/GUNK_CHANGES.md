@@ -120,6 +120,22 @@ the results table below.
 | rtc_dead: RTC power failure, save and continue | pass | pass |
 | full_boxes: every PC slot filled, save, reload | pass (420) | pass (480) |
 
+**Full map sweep** (`play.py map_sweep_all`): CONTINUE onto every map with a warp tile (361, minus 24 Secret Base
+variants and the 4 link rooms, which aren't reachable by a normal warp), saves edited in Python, soft reset between
+maps, A through any entry scene, steps in all four directions. No freeze on Gunk's Ruby except the Mossdeep Game Corner
+basement (an unused map), which freezes identically on vanilla. Indoor maps where the spawn tile is the exit door end
+on the outside map (expected).
+
+**Story-trigger sweep** (`play.py story_littleroot` on both ROMs, then `story_compare`): every coord trigger in
+Littleroot (the only map whose scripts Gunk changes), from the same edited save: all 9 end on the same map and tile
+with the same flags and story vars as vanilla; the only difference is Gunk's three key items with the Running Shoes.
+
+**Story run** (`story.py`, real play from the truck, A through scenes, BFS walking; legs adapted from Gunk's
+Sapphire): truck, Mom, clock, the rival's house, Birch's rescue and the starter, the Route 103 rival battle, the
+Pokédex, Mom's Running Shoes scene with Gunk's gifts, Oldale, Route 102, Petalburg (Dad, Wally's catching tutorial),
+Route 104, Petalburg Woods (the Aqua grunt), Rustboro. Ten Rare Candies after the starter (and fifteen before the
+Gym) are a test aid so battles aren't lost to luck. The Torchic follower was out through all of it.
+
 **Map sweep** (`play.py map_sweep`): CONTINUE onto 18 maps (towns, routes, caves, the Abandoned Ship, the Sealed
 Chamber) with Mudkip out, steps in all directions: no freeze. The follower stays in its ball on 4 of them in this
 setup: Littleroot (the moving truck, a slot-10 object, is still there because the edited save skips the intro),
