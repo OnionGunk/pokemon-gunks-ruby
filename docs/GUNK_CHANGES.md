@@ -25,7 +25,7 @@ exercised in the emulator, ⏳ planned.
 |---|---|---|---|---|
 | 3 | More PC boxes | adapt | **16 boxes** (14 in vanilla; 16 is the flash ceiling): 15 sectors per save slot, the Hall of Fame moved to sectors 30-31, `TOTAL_BOXES_COUNT` / `PC_PARTY_BOX` instead of the PC's literal 14s (box count and party pseudo-box). See `PC_BOXES_PLAN.md`. Old saves don't load. The PokéNav's condition and ribbon lists still cover boxes 1-14 only (its list buffer has room for 420 + 6 and other code depends on the layout after it). | ✅ |
 | 4 | DexNav search levels saved | adapt | 387 bytes appended to `SaveBlock2` (its sector has ~1.3 KB spare). | ✅ |
-| 5 | Dry RTC battery: saves keep working, and berries/tides keep moving | **new** | With the RTC reporting a power failure, vanilla freezes the clock at 2000-01-01 00:00. `RtcGetInfo` now runs the clock from the saved play time instead. The battery warning on the title menu stays. | ✅ |
+| 5 | Dry RTC battery: saves keep working, and berries/tides keep moving | **new** | With the RTC reporting a power failure, vanilla freezes the clock at 2000-01-01 00:00. `RtcGetInfo` now runs the clock from the saved play time instead, and `DoTimeBasedEvents` never lets it run behind the last berry update (a battery that dies after the clock ran on a working RTC would otherwise put it years back; fix by Gunk's Sapphire). The battery warning on the title menu stays. | ✅ |
 
 ## DexNav
 
@@ -103,6 +103,7 @@ the results table below.
 | eggs | egg cycles 10 -> 8 at the 256th step |
 | mom_gift | Littleroot with VAR_LITTLEROOT_STATE 3: Mom's scene gives the Running Shoes, Endless Repel, Exp. All and DexNav; state 4 as in vanilla |
 | exp_bar | Mudkip Lv5 wins a wild battle: the EXP bar animation takes 0.80 frames per pixel (vanilla 1.42) |
+| rtc_dies | battery dies after ~24 years on a working clock: the clock carries on from the last berry update, then 30 h of play move it and the berry update 30 h |
 | rtc_playtime | RTC reporting a power failure: 4 hours of play move the clock 4 hours (vanilla control: frozen) |
 
 **Save suite results**:
