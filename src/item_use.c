@@ -918,6 +918,7 @@ void ItemUseInBattle_PokeBall(u8 taskId)
 {
     if (PlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
     {
+        VarSet(VAR_GUNK_LAST_BALL, gSpecialVar_ItemId); // Gunk: Quick Ball throws this one next
         RemoveBagItem(gSpecialVar_ItemId, 1);
         sub_80A7094(taskId);
     }

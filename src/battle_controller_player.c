@@ -1,4 +1,7 @@
 #include "global.h"
+#include "gunk.h"
+#include "event_data.h"
+#include "constants/vars.h"
 #include "battle.h"
 #include "battle_anim_special.h"
 #include "battle_anim.h"
@@ -337,6 +340,9 @@ static void CompleteOnBankSpritePosX_0(void)
         PlayerBufferExecCompleted();
 }
 
+// Gunk: Quick Ball. The ball L chose; the bag is skipped when the engine asks for the item
+static u16 sGunkQuickBall;
+
 void HandleInputChooseAction(void)
 {
     u16 itemId = gBattleBufferA[gActiveBattler][2] | (gBattleBufferA[gActiveBattler][3] << 8);
@@ -365,6 +371,24 @@ void HandleInputChooseAction(void)
             BtlController_EmitTwoReturnValues(B_COMM_TO_ENGINE, B_ACTION_RUN, 0);
             break;
         }
+        PlayerBufferExecCompleted();
+    }
+    else if (JOY_NEW(R_BUTTON) && GunkQuickBattle())
+    {
+        // Gunk: Quick Run, the same as choosing RUN
+        PlaySE(SE_SELECT);
+        DestroyMenuCursor();
+        BtlController_EmitTwoReturnValues(B_COMM_TO_ENGINE, B_ACTION_RUN, 0);
+        PlayerBufferExecCompleted();
+    }
+    else if (JOY_NEW(L_BUTTON) && GunkQuickBattle() && GunkQuickBallItem() != ITEM_NONE)
+    {
+        // Gunk: Quick Ball. With no room in the party or the boxes, the bag opens and says so, as from BAG.
+        PlaySE(SE_SELECT);
+        DestroyMenuCursor();
+        if (!PlayerPartyAndPokemonStorageFull())
+            sGunkQuickBall = GunkQuickBallItem();
+        BtlController_EmitTwoReturnValues(B_COMM_TO_ENGINE, B_ACTION_USE_ITEM, 0);
         PlayerBufferExecCompleted();
     }
     else if (JOY_NEW(DPAD_LEFT))
@@ -2700,6 +2724,19 @@ static void PlayerHandleChooseItem(void)
 {
     s32 i;
 
+    if (sGunkQuickBall != ITEM_NONE)
+    {
+        // Gunk: Quick Ball. What ItemUseInBattle_PokeBall does: the ball leaves the bag, its id goes to the engine.
+        gSpecialVar_ItemId = sGunkQuickBall;
+        sGunkQuickBall = ITEM_NONE;
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        VarSet(VAR_GUNK_LAST_BALL, gSpecialVar_ItemId);
+        for (i = 0; i < 3; i++)
+            gBattlePartyCurrentOrder[i] = gBattleBufferA[gActiveBattler][1 + i];
+        BtlController_EmitOneReturnValue(B_COMM_TO_ENGINE, gSpecialVar_ItemId);
+        PlayerBufferExecCompleted();
+        return;
+    }
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
     gBattlerControllerFuncs[gActiveBattler] = OpenBagAndChooseItem;
     gBattlerInMenuId = gActiveBattler;

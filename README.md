@@ -15,6 +15,7 @@ It keeps the game's difficulty and story as they are and takes the grind and fri
   included). Talk to it to hear its cry.
 - **16 PC boxes** (14 in the original game): a living dex with room to spare.
 - **Faster play:** instant text, a faster EXP bar, auto-run (hold B to walk), eggs hatch twice as fast.
+- **Quick Run and Quick Ball** in wild battles: at the action menu, R runs and L throws the ball you threw last.
 - **Items:** reusable TMs, two registered items (Select and L), Start sorts the bag, a prompt to use another
   Repel when one runs out, and an Endless Repel toggle.
 - **Pokémon:** IV and EV view in the summary (A on the skills page), Exp. All, vitamins up to 252 EVs, and trade

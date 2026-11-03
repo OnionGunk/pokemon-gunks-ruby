@@ -2,6 +2,8 @@
 #include "gunk.h"
 #include "event_data.h"
 #include "item.h"
+#include "battle.h"
+#include "constants/battle.h"
 #include "pokemon.h"
 #include "party_menu.h"
 #include "constants/item_effects.h"
@@ -93,4 +95,32 @@ const u8 *GunkTradeItemEffect(u16 item)
         return sGunkEvoStoneEffect;
     }
     return NULL;
+}
+
+// Quick Run and Quick Ball: in a plain wild battle, R runs and L throws a ball (src/battle_controller_player.c)
+bool8 GunkQuickBattle(void)
+{
+    return (gBattleTypeFlags & BATTLE_TYPE_WILD)
+        && !(gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE
+                               | BATTLE_TYPE_SAFARI | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_WALLY_TUTORIAL
+                               | BATTLE_TYPE_EREADER_TRAINER));
+}
+
+// The ball L throws: the one last thrown, else a Poke Ball, else the first ball in the bag (ITEM_NONE: none left)
+u16 GunkQuickBallItem(void)
+{
+    u16 last = VarGet(VAR_GUNK_LAST_BALL);
+    u8 i;
+
+    if (last >= FIRST_BALL && last <= LAST_BALL && CheckBagHasItem(last, 1))
+        return last;
+    if (CheckBagHasItem(ITEM_POKE_BALL, 1))
+        return ITEM_POKE_BALL;
+    for (i = 0; i < BAG_POKEBALLS_COUNT; i++)
+    {
+        u16 item = gSaveBlock1.bagPocket_PokeBalls[i].itemId;
+        if (item >= FIRST_BALL && item <= LAST_BALL && gSaveBlock1.bagPocket_PokeBalls[i].quantity)
+            return item;
+    }
+    return ITEM_NONE;
 }
