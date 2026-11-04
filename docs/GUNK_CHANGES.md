@@ -145,4 +145,15 @@ Chamber) with Mudkip out, steps in all directions: no freeze. The follower stays
 setup: Littleroot (the moving truck, a slot-10 object, is still there because the edited save skips the intro),
 Route 131, Meteor Falls 1F and the Abandoned Ship deck (spawned on or next to water/a warp).
 
+**Scene and talk sweeps** (`ruby-tools\scene\suite\scenesweep.py`, from Gunk's Sapphire's sapphire-tools 78c4a8e):
+from the same story state on both ROMs, warp next to every script trigger and either step onto it (coord/frame
+triggers) or talk to it (people), A through the scene, then compare the map, tile, flags and story vars.
+Coord/frame triggers: 202/202 run on both ROMs; of 413 compared, 15 differ, all explained: LinkContestRoom1 and the
+Mossdeep Game Corner B1F freeze the harness on vanilla too; the Mechadoll quiz asks random questions; Kiri, the
+Sludge Bomb man and Wanda's Wally wander, so the harness reaches them on one ROM and not the other (seeded retries
+on Gunk's: Kiri gives her berry, Wally's speech plays); Route 104's VAR_BRINEY_LOCATION is leftover scratch from
+Briney's house; Route 110's var is the Cycling Road record time; Mossdeep's visited flag comes from auto-run moving
+the harness one tile instead of two. Talks: 277/277 run on both ROMs, no frozen game, 3 differ, the same three
+wanderers (flags 0xE6, 0x8D2, 0xC1).
+
 Not yet exercised: a full story playthrough.
