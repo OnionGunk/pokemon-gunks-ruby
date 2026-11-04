@@ -38,7 +38,7 @@ exercised in the emulator, ⏳ planned.
 
 | # | Change | Verdict | Ruby plan | Status |
 |---|---|---|---|---|
-| 8 | Pokémon follow the player | port | The party's first Pokémon (not an egg or fainted) walks one tile behind, HeartGold style. Sprites for all 386 species (normal and shiny) come from pokeemerald-expansion (`tools/gunk/make_followers.py` imports them); the follow logic is adapted from its `MovementType_FollowPlayer` as `MovementType_GunkFollow`. One graphics id (218) whose graphics info lives in RAM; palette in sprite slot 10. It stays in its ball while surfing, diving or biking, and on maps that show another slot-10 object (the rival, Kecleon, the S.S. Tidal...). It never blocks anyone (trainers see past it), isn't saved with the map's objects, and talking to it plays its cry. | ✅ |
+| 8 | Pokémon follow the player | port | The party's first Pokémon (not an egg or fainted) walks one tile behind, HeartGold style. Sprites for all 386 species (normal and shiny) come from pokeemerald-expansion (`tools/gunk/make_followers.py` imports them); the follow logic is adapted from its `MovementType_FollowPlayer` as `MovementType_GunkFollow`. One graphics id (218) whose graphics info lives in RAM; palette in sprite slot 10. It stays in its ball while surfing, diving or biking, and on maps that show another slot-10 object (the rival, Kecleon, the S.S. Tidal...). It never blocks anyone (trainers see past it), isn't saved with the map's objects, and talking to it plays its cry. **Talk (v1.1, from Gunk's Sapphire d9e46c15f):** A on it plays its cry and gives a line by friendship (under 50, 50–99, 100–199, 200–254, 255), or a tired line under a quarter of its HP; lines from FireRed v1.2. | ✅ |
 
 ## Quality of life
 
