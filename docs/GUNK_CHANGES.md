@@ -155,5 +155,13 @@ on Gunk's: Kiri gives her berry, Wally's speech plays); Route 104's VAR_BRINEY_L
 Briney's house; Route 110's var is the Cycling Road record time; Mossdeep's visited flag comes from auto-run moving
 the harness one tile instead of two. Talks: 277/277 run on both ROMs, no frozen game, 3 differ, the same three
 wanderers (flags 0xE6, 0x8D2, 0xC1).
+Both sweeps rerun on the release candidate (sha1 33698224, with the follower slot yield and the DexNav flee reset):
+the same 12 coord/frame differences and 2 freezes, the same 3 talk differences, nothing new.
 
-Not yet exercised: a full story playthrough.
+**Gyms, Elite Four and Champion** (`ruby-tools\scene\suite\gyms.py`, from Gunk's Sapphire; overpowered test party,
+earlier badges set, warped to each leader) on the release candidate and on vanilla: all 8 leaders give their badge,
+the Elite Four and the Champion (Steven) are beaten, the Hall of Fame, credits and title follow and CONTINUE loads after game
+clear, on both ROMs. The only difference: the Hall of Fame is written to flash sectors 30-31 (vanilla 28-29), as
+the 16-box layout intends.
+
+Not yet exercised: a full hand-played story playthrough (the story run, the scene and talk sweeps and the gyms sweep cover it in pieces).
