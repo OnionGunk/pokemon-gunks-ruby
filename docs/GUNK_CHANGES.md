@@ -17,7 +17,7 @@ exercised in the emulator, ⏳ planned.
 | # | Change | Verdict | Ruby plan | Status |
 |---|---|---|---|---|
 | 1 | ROM header title `GUNK RU`; game code stays `AXVE` so emulators pick flash 128K + RTC | port | `config.mk` `TITLE`. | ✅ |
-| 2 | Title-screen logo "Gunk's Ruby Version" | adapt | Needs art: the user's own (as for HeartGold) or new lettering. Open question. | ⏳ |
+| 2 | Title-screen logo "Gunk's Ruby Version" | adapt | The user's "Pokémon Gunk's Ruby Version" art (same style as Gunk's Sapphire's), black keyed out (outlines kept), scaled to 182x87 with Lanczos (`ruby-toolsrt\prep_user_logo.py`) and placed at screen (29, 8) on the logo layer (`import_title.py --no-banner`: 163 of 256 tiles, 217 colours; palette entry 9, the flashing background, left alone). The version banner sprites are empty, so nothing slides in separately. Checked on the title screen (fade-in and settled, over Groudon); save suite 5/5 on that build. | ✅ |
 
 ## Save and storage
 
