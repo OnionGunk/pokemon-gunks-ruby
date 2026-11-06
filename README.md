@@ -3,7 +3,7 @@
 A quality-of-life hack of Pokémon Ruby, built on [pret's Ruby/Sapphire decompilation](https://github.com/pret/pokeruby).
 It keeps the game's difficulty and story as they are and takes the grind and friction out, for long playthroughs.
 
-**Work in progress.** No release yet: releases wait until the hack is playable start to finish.
+**Latest release: [v1.0](../../releases/tag/v1.0).**
 
 ## Features
 
@@ -12,9 +12,11 @@ It keeps the game's difficulty and story as they are and takes the grind and fri
   search for it again. Search levels and chains raise the odds of good IVs and shinies, and every Pokémon is a
   legal wild roll.
 - **Pokémon follow you.** The first Pokémon in your party walks behind you, HeartGold style (all 386, shinies
-  included). Talk to it to hear its cry.
+  included). Talk to it to hear its cry and a line that shows how it feels about you.
 - **16 PC boxes** (14 in the original game): a living dex with room to spare.
 - **Faster play:** instant text, a faster EXP bar, auto-run (hold B to walk), eggs hatch twice as fast.
+- **Battles:** press **R** at the battle menu to run, and **L** to throw a Poké Ball (hold L and press
+  Left/Right to pick the kind).
 - **Items:** reusable TMs, two registered items (Select and L), Start sorts the bag, a prompt to use another
   Repel when one runs out, and an Endless Repel toggle.
 - **Pokémon:** IV and EV view in the summary (A on the skills page), Exp. All, vitamins up to 252 EVs, and trade
