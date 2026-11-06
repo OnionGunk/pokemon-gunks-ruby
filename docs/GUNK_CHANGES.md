@@ -18,6 +18,7 @@ exercised in the emulator, ⏳ planned.
 |---|---|---|---|---|
 | 1 | ROM header title `GUNK RU`; game code stays `AXVE` so emulators pick flash 128K + RTC | port | `config.mk` `TITLE`. | ✅ |
 | 2 | Title-screen logo "Gunk's Ruby Version" | adapt | The user's "Pokémon Gunk's Ruby Version" art (same style as Gunk's Sapphire's), black keyed out (outlines kept), scaled to 182x87 with Lanczos (`ruby-tools\art\prep_user_logo.py`) and placed at screen (29, 8) on the logo layer (`import_title.py --no-banner`: 163 of 256 tiles, 217 colours; palette entry 9, the flashing background, left alone). The version banner sprites are empty, so nothing slides in separately. Checked on the title screen (fade-in and settled, over Groudon); save suite 5/5 on that build. | ✅ |
+| 2b | PokeDaisy / tracker addresses | adapt | README section "Trackers and PokeDaisy": detect by the `GUNK RU` title; party, gMain, objects, tasks, sprites at retail addresses; save blocks moved. `ruby-tools\pokedaisy\symtable.py` (from Gunk's Sapphire's) makes `PokeDaisy.md` + `.csv` from the release build's symbols; attached to each release. On gunk20: 20 key symbols, 298 of 631 RAM symbols moved (gSaveBlock1 0x02025734 -> 0x020258B8, gPokemonStorage 0x020300A0 -> 0x02030224). | ✅ (attach at v1.1) |
 
 ## Save and storage
 

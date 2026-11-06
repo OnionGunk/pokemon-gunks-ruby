@@ -49,6 +49,15 @@ Use an emulator or cart with 128 KiB flash saves and the real-time clock (any th
 Saves carry over between releases unless the release notes say otherwise. Back up your save before updating.
 Saves from the original Ruby don't load: the extra PC boxes moved the save layout, so start a new game.
 
+## Trackers and PokeDaisy
+
+The cart header reads title `GUNK RU`, game code `AXVE`. Detect the hack by the title; the code is retail
+Ruby's. Party, enemy party, gMain, object events, tasks and sprites sit at retail addresses, but the save
+blocks moved: gSaveBlock1, gPokemonStorage (16 boxes), the map header and script variables are elsewhere.
+Each release attaches `PokeDaisy.md` (key symbols, then every moved RAM symbol) and `PokeDaisy.csv` (every
+RAM symbol, retail and Gunk's address) made from that release's own build. A tool's retail-Ruby addresses
+must use that table or stay off for the hack.
+
 ## Build it
 
 Follow pret's [`INSTALL.md`](INSTALL.md), then run `make ruby`. A clean build reproduces the release ROM, and
