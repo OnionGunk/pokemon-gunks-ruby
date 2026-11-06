@@ -1676,6 +1676,8 @@ Text_GunkFollowerDevoted:
 EventScript_GunkDexNav::
 	lockall
 	special GunkDexNavPrepare
+	compare VAR_RESULT, 0xFFFF @ GUNK_DEXNAV_SAFARI
+	goto_if_eq EventScript_GunkDexNavSafari
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_GunkDexNavNoneHere
 	fadescreen 1
@@ -1725,6 +1727,11 @@ EventScript_GunkDexNavNotHere::
 	goto EventScript_GunkDexNavClose
 	end
 
+@ in the Safari Zone (gunk_dexnav.c: GetSafariZoneFlag)
+EventScript_GunkDexNavSafari::
+	msgbox Text_GunkDexNavSafari, MSGBOX_DEFAULT
+	goto EventScript_GunkDexNavClose
+
 EventScript_GunkDexNavNoneHere:
 	msgbox Text_GunkDexNavNoneHere, MSGBOX_DEFAULT
 	goto EventScript_GunkDexNavClose
@@ -1757,6 +1764,10 @@ Text_GunkDexNavFoundWater:
 
 Text_GunkDexNavGotAway:
 	.string "The {STR_VAR_1} got away...$"
+
+Text_GunkDexNavSafari:
+	.string "The DEXNAV can't search\n"
+	.string "in the SAFARI ZONE.$"
 
 Text_GunkDexNavNoneHere:
 	.string "There are no wild POKéMON\n"
