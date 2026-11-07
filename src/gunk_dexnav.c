@@ -25,7 +25,6 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
-#include "safari_zone.h"
 #include "script.h"
 #include "string_util.h"
 #include "text.h"
@@ -73,7 +72,6 @@ EWRAM_DATA static struct GunkDexNavArea sArea = {0};
 extern const u8 EventScript_GunkDexNavAgain[];
 extern const u8 EventScript_GunkDexNavNoTarget[];
 extern const u8 EventScript_GunkDexNavNotHere[];
-extern const u8 EventScript_GunkDexNavSafari[];
 
 static const u8 sText_SearchLv[] = _("Search Lv. ");
 static const u8 sText_Chain[] = _("  Chain ");
@@ -88,14 +86,10 @@ static void RollMon(void);
 static void SearchBar_Start(void);
 static void SearchBar_Keep(void);
 
-// None in the Safari Zone: a DexNav battle there would be a normal battle, so a catch in any other ball would carry
-// an illegal ball / met location
 static const struct WildPokemonInfo *GetAreaMons(bool8 water)
 {
     u16 i;
 
-    if (GetSafariZoneFlag())
-        return NULL;
     for (i = 0; gWildMonHeaders[i].mapGroup != 0xFF; i++)
     {
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1.location.mapGroup
@@ -150,15 +144,9 @@ static u8 ListSpecies(const struct WildPokemonInfo *info, u8 slots, u16 *species
     return count;
 }
 
-// Special: list this area's grass and surfing Pokémon; VAR_RESULT = how many (0: none here, GUNK_DEXNAV_SAFARI: in
-// the Safari Zone, where it doesn't search)
+// Special: list this area's grass and surfing Pokémon; VAR_RESULT = how many (0: none here)
 void GunkDexNavPrepare(void)
 {
-    if (GetSafariZoneFlag())
-    {
-        gSpecialVar_Result = GUNK_DEXNAV_SAFARI;
-        return;
-    }
     sArea.landCount = ListSpecies(GetAreaMons(FALSE), LAND_SLOTS, sArea.land, sArea.landMin, sArea.landMax);
     sArea.waterCount = ListSpecies(GetAreaMons(TRUE), WATER_SLOTS, sArea.water, sArea.waterMin, sArea.waterMax);
     gSpecialVar_Result = sArea.landCount + sArea.waterCount;
@@ -330,11 +318,6 @@ bool8 GunkDexNavSearchAgain(void)
     if (!CheckBagHasItem(ITEM_DEXNAV, 1))
         return FALSE;
     LockPlayerFieldControls();
-    if (GetSafariZoneFlag())
-    {
-        ScriptContext_SetupScript(EventScript_GunkDexNavSafari);
-        return TRUE;
-    }
     if (sDexNav.lastSpecies == SPECIES_NONE)
     {
         ScriptContext_SetupScript(EventScript_GunkDexNavNoTarget);

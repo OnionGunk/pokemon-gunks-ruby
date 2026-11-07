@@ -20,7 +20,6 @@ bool8 GunkCanUseFieldMoveUntaught(struct Pokemon *mon, u16 move);
 #define GUNK_DEXNAV_WATER_MAX 5
 #define GUNK_DEXNAV_WATER     16   // screen result: water entry n is GUNK_DEXNAV_WATER + n
 #define GUNK_DEXNAV_CLOSED    0x7F // screen result: closed with B
-#define GUNK_DEXNAV_SAFARI    0xFFFF // GunkDexNavPrepare result: in the Safari Zone, no search
 struct GunkDexNavArea
 {
     u16 land[GUNK_DEXNAV_LAND_MAX];
